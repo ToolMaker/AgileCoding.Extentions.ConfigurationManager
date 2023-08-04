@@ -20,13 +20,13 @@
             if (rootConfigFile.Name.ToLower().EndsWith($".exe.config"))
             {
                 //Its a application running, so the DLL configfiles should sit in the root
-                rigthConfigFile = $@"{rootConfigFile.Directory.FullName}\{DLLNameAndExtention}";
+                rigthConfigFile = $@"{rootConfigFile?.Directory?.FullName}\{DLLNameAndExtention}";
             }
             else if (rootConfigFile.Name.ToLower().EndsWith($"web.config"))
             {
                 detectedApp = "Web Applicaiton";
                 //Its a WEB application running, so the DLL configfiles should sit in the bin
-                rigthConfigFile = $@"{rootConfigFile.Directory.FullName}\bin\{DLLNameAndExtention}";
+                rigthConfigFile = $@"{rootConfigFile?.Directory?.FullName}\bin\{DLLNameAndExtention}";
             }
             rigthConfigFile.ThrowIfFileDoesntExist<ConfigurationErrorsException>($"Unable to find config file for {detectedApp} at '{rigthConfigFile}'");
 
